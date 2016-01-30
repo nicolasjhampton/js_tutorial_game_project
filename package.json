@@ -1,0 +1,21 @@
+{
+  "name": "jsgameproject",
+  "version": "1.0.0",
+  "description": "A translation of the python flask game project",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "Nicolas Hampton",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "mocha": "^2.4.4"
+  },
+  "dependencies": {
+    "body-parser": "^1.14.2",
+    "express": "^4.13.4",
+    "mongodb": "^2.1.4",
+    "mongoose": "^4.3.7"
+  }
+}
