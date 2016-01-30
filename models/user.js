@@ -1,12 +1,22 @@
 // User Schema and model
 var mongoose = require('mongoose');
 
-var DEFAULT_FIELD = { type: String, default: '' };
+var bcrypt = require('bcrypt');
+
+var password_hash = function(string) {
+    bcrypt.hash(string, 8, function(err, hash){
+        if(err){
+            return err;
+        } else {
+            return hash;
+        }
+    });
+}
 
 var userSchema = new mongoose.Schema({
-    username: DEFAULT_FIELD,
-    email: DEFAULT_FIELD,
-    password: DEFAULT_FIELD,
+    username: {type: String, unique: true},
+    email: {type: String, unique: true},
+    password: {type: String, set: password_hash},
     joined_at: {type: Date, default: Date.now}
 });
 

@@ -109,15 +109,15 @@ describe('UserModel', function(){
     it("should raise an error if a username is not unique", function(done){
        
        // Assumption
-        var test = testWrap(done, function(user, err){
-            expect(err).to.exist;
+        var test = testWrap(done, function(err, user){
+            expect(err.code).to.equal(11000);
         });
         
         var testData = copy(mockData);
         
         testData.email = 'unique@unique.com';
-        
-        new User(testData).save().then(test);
+
+        new User(testData).save(test);
        
         
     });
@@ -125,16 +125,15 @@ describe('UserModel', function(){
     it("should raise an error if an email is not unique", function(done){
        
        // Assumption
-        var test = testWrap(done, function(user, err){
-            expect(err).to.exist;
+        var test = testWrap(done, function(err, user){
+            expect(err.code).to.equal(11000);
         });
         
         var testData = copy(mockData);
         
         testData.username = 'uniqueunique';
         
-        new User(mockData).save().then(test);
-       
+        new User(testData).save(test);
         
     });
 
