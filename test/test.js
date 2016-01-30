@@ -136,5 +136,68 @@ describe('UserModel', function(){
         new User(testData).save(test);
         
     });
+    
+    it("should raise an error if a username is too short", function(done){
+       
+       // Assumption
+        var test = testWrap(done, function(err, user){
+            expect(err.name).to.equal('ValidationError');
+        });
+        
+        var testData = copy(uniqueMockData);
+        
+        testData.username = 'uuu';
+        
+        new User(testData).save(test);
+        
+    });
+    
+    it("should raise an error if a username is too long", function(done){
+       
+       // Assumption
+        var test = testWrap(done, function(err, user){
+            expect(err.name).to.equal('ValidationError');
+        });
+        
+        var testData = copy(uniqueMockData);
+        
+        // 51 u's
+        testData.username = 'UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU';
+        
+        new User(testData).save(test);
+        
+    });
+    
+    it("should raise an error if a password is too short", function(done){
+       
+       // Assumption
+        var test = testWrap(done, function(err, user){
+            expect(err.name).to.equal('ValidationError');
+        });
+        
+        var testData = copy(uniqueMockData);
+        
+        testData.password = 'sixsix';
+        
+        new User(testData).save(test);
+        
+    });
+    
+    it("should raise an error if a password is too long", function(done){
+       
+       // Assumption
+        var test = testWrap(done, function(err, user){
+            console.log(err.name);
+            expect(err.name).to.equal('ValidationError');
+        });
+        
+        var testData = copy(uniqueMockData);
+        
+        // 51 u's
+        testData.password = 'UUUUUUUUUUUUUUUUUUUUU';
+        
+        new User(testData).save(test);
+        
+    });
 
 });
