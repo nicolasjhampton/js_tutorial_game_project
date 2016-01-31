@@ -1,8 +1,6 @@
-// Boilerplate mongoose setup
-
-// Use mongoose.connection.on('open') in your models file to set up schema
-// and collections run mongod in a different window to have a mongo server to 
-// connect to
+/*
+ * Mongoose database setup 
+ */
 
 // Bring Mongoose into the app 
 var mongoose = require( 'mongoose' ); 
