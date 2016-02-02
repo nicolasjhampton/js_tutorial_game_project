@@ -17,16 +17,40 @@ var data = {username:'username',
             
 app.use(bodyParser.json());
 
-app.get('/', function(req, res){ 
+app.get('/', function(req, res){
               
-    new User(data).save(function(err, user){
-       if(err) console.log(err);
-       
-       return res.send(user);  
-        
-    });
+    return res.send('hey');
+    
+});
+
+app.get('/register', function(req, res){ 
+              
+    return res.send('hey');
+    
+});
+
+app.get('/login', function(req, res){
+    
+    return res.send('hey');
+    
+});
+
+app.get('/logout', function(req, res){
+    
+    res.writeHead('302', {'location': "/login"});
+    res.end('hey');
     
 });
 
 
+
 app.listen(3000);
+
+module.exports = app;
+
+// new User(data).save(function(err, user){
+//        if(err) console.log(err);
+       
+//        return res.send(user);  
+        
+//     });

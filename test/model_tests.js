@@ -1,3 +1,7 @@
+/*
+ *  Model Tests
+ */
+
 var mongoose = require('mongoose');
 var expect = require('chai').expect;
 
@@ -267,6 +271,22 @@ describe('UserModel', function(){
             
             // Assumption
             expect(user.check_hash(mockData.password)).to.equal(true);
+        });
+
+        // Process
+        User.findOne({username: mockData.username}).exec(test);
+        
+    });
+    
+    it("should have a method to check the password hash " + 
+        "that fails with an incorrect password", function(done){
+       
+       // Test
+        var test = testWrap(done, function(err, user){
+            if (err) throw Error(err);
+            
+            // Assumption
+            expect(user.check_hash('incorrectPassword')).to.equal(false);
         });
 
         // Process
